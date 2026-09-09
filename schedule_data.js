@@ -8,160 +8,160 @@ const scheduleStr = `
                 "text": "Start of the day",
                 "colour": "239, 52, 24",
                 "start": "00:00",
-                "end": "08:55",
+                "end": "08:50",
                 "type": "Break"
             },
             {
                 "text": "A Block",
                 "colour": "default",
-                "start": "08:55",
-                "end": "10:15",
+                "start": "08:50",
+                "end": "10:10",
                 "type": "Block"
             },
             {
                 "text": "Go to B Block Class",
                 "colour": "239, 52, 24",
-                "start": "10:15",
-                "end": "10:25",
+                "start": "10:10",
+                "end": "10:20",
                 "type": "Transition"
             },
             {
                 "text": "B Block",
                 "colour": "default",
-                "start": "10:25",
-                "end": "11:40",
+                "start": "10:20",
+                "end": "11:35",
                 "type": "Block"
             },
             {
                 "text": "Lunch",
                 "colour": "239, 52, 24",
-                "start": "11:40",
-                "end": "12:15",
+                "start": "11:35",
+                "end": "12:10",
                 "type": "Lunch"
             },
             {
                 "text": "Go to C Block Class",
                 "colour": "239, 52, 24",
-                "start": "12:15",
-                "end": "12:20",
+                "start": "12:10",
+                "end": "12:15",
                 "type": "Transition"
             },
             {
                 "text": "C Block",
                 "colour": "default",
-                "start": "12:20",
-                "end": "13:40",
+                "start": "12:15",
+                "end": "13:35",
                 "type": "Block"
             },
             {
                 "text": "Go to D Block Class",
                 "colour": "239, 52, 24",
-                "start": "13:40",
-                "end": "13:50",
+                "start": "13:35",
+                "end": "13:45",
                 "type": "Transition"
             },
             {
                 "text": "D Block",
                 "colour": "default",
-                "start": "13:50",
-                "end": "15:05",
+                "start": "13:45",
+                "end": "15:00",
                 "type": "Block"
             },
             {
                 "text": "School is Over",
                 "colour": "239, 52, 24",
-                "start": "15:05",
-                "end": "08:55",
+                "start": "15:00",
+                "end": "08:50",
                 "type": "Break"
             }
         ] 
     },
     {
-        "description": "2022/2023 Flex schedule with 4-Block system.",
+        "description": "2026/2027 Flex schedule with 4-Block system.",
         "days":[3],
         "values": [
             {
                 "text": "Start of the day",
                 "colour": "239, 52, 24",
                 "start": "00:00",
-                "end": "08:55",
+                "end": "08:50",
                 "type": "Break"
             },
             {
                 "text": "Flex Time",
                 "colour": "255, 255, 102",
-                "start": "08:55",
-                "end": "09:40",
+                "start": "08:50",
+                "end": "09:35",
                 "type": "Block"
             },
             {
                 "text": "A or B Block",
                 "colour": "default",
-                "start": "09:40",
-                "end": "10:35",
+                "start": "09:35",
+                "end": "10:30",
                 "type": "Block"
             },
             {
                 "text": "Break",
                 "colour": "239, 52, 24",
-                "start": "10:35",
-                "end": "10:45",
+                "start": "10:30",
+                "end": "10:40",
                 "type": "Break"
             },
             {
                 "text": "B or A Block",
                 "colour": "default",
-                "start": "10:45",
-                "end": "11:40",
+                "start": "10:40",
+                "end": "11:35",
                 "type": "Block"
             },
             {
                 "text": "Lunch",
                 "colour": "239, 52, 24",
-                "start": "11:40",
-                "end": "12:15",
+                "start": "11:35",
+                "end": "12:10",
                 "type": "Lunch"
             },
             {
                 "text": "Go to C or D Block",
                 "colour": "239, 52, 24",
-                "start": "12:15",
-                "end": "12:20",
+                "start": "12:10",
+                "end": "12:15",
                 "type": "Transition"
             },
             {
                 "text": "C or D Block",
                 "colour": "default",
-                "start": "12:20",
-                "end": "13:25",
+                "start": "12:15",
+                "end": "13:10",
                 "type": "Block"
             },
             {
                 "text": "Break",
                 "colour": "239, 52, 24",
-                "start": "13:15",
-                "end": "13:25",
+                "start": "13:10",
+                "end": "13:20",
                 "type": "Break"
             },
             {
                 "text": "D or C Block",
                 "colour": "default",
-                "start": "13:25",
-                "end": "14:20",
+                "start": "13:20",
+                "end": "14:15",
                 "type": "Block"
             },
             {
                 "text": "Flex Time",
                 "colour": "255, 255, 102",
-                "start": "14:20",
-                "end": "15:05",
+                "start": "14:15",
+                "end": "15:00",
                 "type": "Block"
             },
             {
                 "text": "School is Over",
                 "colour": "239, 52, 24",
-                "start": "15:05",
-                "end": "08:55",
+                "start": "15:00",
+                "end": "08:50",
                 "type": "Break"
             }
         ]
