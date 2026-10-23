@@ -1,7 +1,7 @@
 # HackerClock
 
 The clock shown on the projector in the Hackerspace: the time, the current block, and the
-time left until the next one. It's a web page (`index.html`) shown full-screen in Firefox on
+time left until the next one. It's a web page (`index.html`) shown full-screen in Chromium on
 **pi-projector**, from `/home/pi/jsclock`.
 
 ## Setup

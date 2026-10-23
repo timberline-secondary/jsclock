@@ -75,6 +75,74 @@ const scheduleStr = `
                 "type": "Break"
             }
         ] 
+    },{
+        "description": "4-Block Short Day.",
+        "days": [],
+        "values": [
+            {
+                "text": "Start of the day",
+                "colour": "239, 52, 24",
+                "start": "00:00",
+                "end": "08:55",
+                "type": "Break"
+            },
+            {
+                "text": "A Block",
+                "colour": "default",
+                "start": "08:55",
+                "end": "09:45",
+                "type": "Block"
+            },
+            {
+                "text": "Go to B Block Class",
+                "colour": "239, 52, 24",
+                "start": "09:45",
+                "end": "09:50",
+                "type": "Transition"
+            },
+            {
+                "text": "B Block",
+                "colour": "default",
+                "start": "09:50",
+                "end": "10:40",
+                "type": "Block"
+            },
+            {
+                "text": "Go to C Block Class",
+                "colour": "239, 52, 24",
+                "start": "10:40",
+                "end": "10:55",
+                "type": "Transition"
+            },
+            {
+                "text": "C Block",
+                "colour": "default",
+                "start": "10:55",
+                "end": "11:40",
+                "type": "Block"
+            },
+            {
+                "text": "Go to D Block Class",
+                "colour": "239, 52, 24",
+                "start": "11:40",
+                "end": "11:45",
+                "type": "Transition"
+            },
+            {
+                "text": "D Block",
+                "colour": "default",
+                "start": "11:45",
+                "end": "12:30",
+                "type": "Block"
+            },
+            {
+                "text": "School is Over",
+                "colour": "239, 52, 24",
+                "start": "12:30",
+                "end": "08:55",
+                "type": "Break"
+            }
+        ]
     },
     {
         "description": "2026/2027 Flex schedule with 4-Block system.",

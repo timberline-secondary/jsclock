@@ -57,7 +57,7 @@ function update() {
         updateClocks(h, m, s);
     }
 }
-window.setInterval(update, 100);
+window.setInterval(update, 200);
 
 
 function updateClocks(h, m, s){
