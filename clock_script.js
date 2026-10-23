@@ -5,7 +5,12 @@
 const dayFromNumber = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const monthFromNumber = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+// The schedules saved on this Pi (schedules.js, from the control panel) if there are any,
+// otherwise the ones in schedule_data.js.
 const schedules = function(){
+    if(typeof localSchedules !== "undefined" && Array.isArray(localSchedules)){
+        return localSchedules
+    }
     try{
         return JSON.parse(scheduleStr)
     }
@@ -14,6 +19,7 @@ const schedules = function(){
     }
     return null
 }();
+const defaultColour = "13, 9, 10";
 var sched = null;
 const time = new Date();
 var lastSecond = -1;
@@ -39,9 +45,13 @@ function update() {
             if(sched !== null || setSchedule()) updateBlockInfo();
 
             if (h != lastHour) {// Update day of week and date and get new daily schedule when hour changes
+                if(h == 0 && lastHour != -1) {
+                    // A new day: load the page again, to pick up any schedules saved since.
+                    window.location.reload();
+                    return;
+                }
                 lastHour = h;
                 updateCalendarInfo();
-                if(h == 0) setSchedule();
             }
         }
         updateClocks(h, m, s);
@@ -94,22 +104,35 @@ function updateClocks(h, m, s){
 }
 
 
+/* Today's schedule: the first one with today's date in its "dates" (e.g. "2026-10-30"),
+ * or failing that, the first one with today's day of the week in its "days" (0 is Sunday).
+*/
 function setSchedule(){
     let dayNum = time.getDay();
+    let dateStr = `${time.getFullYear()}-${String(time.getMonth() + 1).padStart(2, '0')}-${String(time.getDate()).padStart(2, '0')}`;
     if(schedules !== null) {
-        for(let i=0; i < schedules.length; i++) {
-            if(schedules[i].days.indexOf(dayNum) > -1){
-                sched = schedules[i].values;
-                sched.sort(function(a,b){return a.start.localeCompare(b.start)});
-                schedIndex = -1;
-                time_remaining = -1;
-                updateBlockInfo();
-                return true;
-            } 
+        let found = schedules.find(s => (s.dates || []).indexOf(dateStr) > -1) ||
+                    schedules.find(s => (s.days || []).indexOf(dayNum) > -1);
+        if(found){
+            sched = found.values;
+            sched.sort(function(a,b){return a.start.localeCompare(b.start)});
+            schedIndex = -1;
+            time_remaining = -1;
+            updateBlockInfo();
+            return true;
         }
     }
     sched = null;
     return false
+}
+
+
+/* The background colour for a block: its "colour" ("239, 52, 24"), or the usual dark one for
+ * "default".
+*/
+function blockColour(colour){
+    let rgb = colour && colour !== "default"? colour: defaultColour;
+    return `rgba(${rgb}, .55)`;
 }
 
 
@@ -118,7 +141,7 @@ function noBlockInfo(){
     document.getElementById("next_block_at").innerHTML = "";
     document.getElementById("time_left_title").innerHTML = "";
     document.getElementById("time_left").innerHTML = "";
-    document.getElementById("rounded").styles.backgroundColor = "rgba(13, 9, 10, .55)";
+    document.getElementById("rounded").style.backgroundColor = blockColour("default");
 }
 
 
@@ -149,7 +172,7 @@ function updateBlockInfo(){
     }
     // If we got here, we are in a block and the next block exists
     document.getElementById("cur_block").innerHTML = sched[schedIndex].text;
-    document.getElementById("rounded").style.backgroundColor = `rgba(${sched[schedIndex].colour}, .55)`;
+    document.getElementById("rounded").style.backgroundColor = blockColour(sched[schedIndex].colour);
 }
 
 
