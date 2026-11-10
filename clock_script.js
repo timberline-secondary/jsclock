@@ -43,6 +43,7 @@ function update() {
         if (m != lastMinute) { // Maybe change schedule info when minute changes
             lastMinute = m;
             if(sched !== null || setSchedule()) updateBlockInfo();
+            updateMessage();
 
             if (h != lastHour) {// Update day of week and date and get new daily schedule when hour changes
                 if(h == 0 && lastHour != -1) {
@@ -180,9 +181,51 @@ function updateCalendarInfo(){
     document.getElementById("date").innerHTML = `${dayFromNumber[time.getDay()]}, ${monthFromNumber[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}`;
 }
 
+/* The message to show instead of the joke (message.js, saved by the control panel), if
+ * there is one and its time ("until", e.g. "2026-11-10T15:30") hasn't passed.
+*/
+function currentMessage() {
+    if(typeof clockMessage === "undefined" || !clockMessage || !clockMessage.text) return null;
+    if(clockMessage.until && Date.now() >= new Date(clockMessage.until).getTime()) return null;
+    return clockMessage.text;
+}
+var showingMessage = false;
+
+/* Show the message (checked each minute), or go back to jokes once its time has passed.
+*/
+function updateMessage() {
+    let text = currentMessage();
+    if(text) {
+        showingMessage = true;
+        showText(text, false);
+    }
+    else if(showingMessage) {
+        showingMessage = false;
+        updateDadJoke();
+    }
+}
+
+function showText(text, isHtml) {
+    let div = document.getElementById("joke_div")
+    if(text.length > 109){
+        div.style.fontSize = "1.875rem";
+        div.style.lineHeight = "2.25rem";
+    }
+    else {
+        div.style.fontSize = "2.25rem";
+        div.style.lineHeight = "2.5rem";
+    }
+    if(isHtml) div.innerHTML = text;
+    else div.textContent = text;
+}
+
 /* Runs at interval to refresh Dad joke.
 */
 async function updateDadJoke() {
+    if(currentMessage()) {
+        updateMessage();
+        return;
+    }
     const url = "https://icanhazdadjoke.com/";
     let html = "";
     try {
@@ -194,16 +237,7 @@ async function updateDadJoke() {
     } catch (error) {
         console.log(error)
     }
-    let div = document.getElementById("joke_div")
-    if(html.length > 109){
-        div.style.fontSize = "1.875rem";
-        div.style.lineHeight = "2.25rem";
-    }
-    else {
-        div.style.fontSize = "2.25rem";
-        div.style.lineHeight = "2.5rem";
-    }
-    div.innerHTML = html;
+    showText(html, true);
 }
 updateDadJoke();
 window.setInterval(updateDadJoke, 3*60*1000);
