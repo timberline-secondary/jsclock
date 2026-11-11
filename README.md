@@ -33,3 +33,10 @@ Each schedule has:
     `default` for the usual dark one.
 
 The clock reads the schedules when it starts, and again each midnight.
+
+## A message on the clock
+
+The control panel's **Show a message on the clock** saves `message.js` on the Pi (not in
+git), e.g. `const clockMessage = {"text": "Assembly in the gym at 10:30", "until":
+"2026-11-10T10:30"};`. The clock shows it instead of the joke until that time (or until it's
+taken off, without `until`), then goes back to jokes.
